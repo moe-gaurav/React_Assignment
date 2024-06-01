@@ -10,6 +10,7 @@ const OAuth2Child = ({ firstHeading }) => {
   const requestBodyRef = useRef(null);
   const [parameterBoxes, addParameterBox] = useState([]);
   const [updatedBox, setUpdatedBox] = useState([]);
+  const [limit, setLimit] = useState(0);
   //   const []
 
   const handleChangeFirstValue = (id, value) => {
@@ -37,14 +38,27 @@ const OAuth2Child = ({ firstHeading }) => {
   };
   const handleClickKVPair = (id) => {
     // addParameterBox(updatedBox);
+    if (limit >= 5) {
+      return;
+    }
+    setLimit(limit + 1);
     addParameterBox((prev) => [
       ...prev,
       { id, firstValue: "", secondValue: "" },
     ]);
+
+    // updatedBox.map((ele)=>{
+
+    // })
+    // const newUpdated = updatedBox;
+    // newUpdated.push({ id, firstValue: "", secondValue: "" });
+    // addParameterBox(newUpdated);
+    // console.log("this", parameterBoxes);
   };
   const deleteKeyValuePair = (uid) => {
     const newParameterBox = parameterBoxes.filter((ele) => ele.id != uid);
     addParameterBox(newParameterBox);
+    setLimit(limit - 1);
   };
   const gap = css({
     marginTop: "2rem",
@@ -170,8 +184,8 @@ const OAuth2Child = ({ firstHeading }) => {
           css={css({
             display: "flex",
             marginTop: "1rem",
-            color: "#06A6B7",
-            cursor: "pointer",
+            color: limit >= 5 ? "rgb(161, 179, 211)" : "#06A6B7",
+            cursor: limit >= 5 ? "not-allowed" : "pointer",
             width: "14%",
           })}
           onClick={() => {
