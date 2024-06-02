@@ -22,6 +22,7 @@ const SessionAuth = () => {
   };
   return (
     <div css={innerBoxStyle}>
+      {/* username and password */}
       <div
         css={css({
           display: "flex",
@@ -43,12 +44,14 @@ const SessionAuth = () => {
           </div>
         </div>
       </div>
+      {/* Token Exchange */}
       <div css={gap}>
         <div>Token exchange endpoint URL*</div>
         <div css={css({ width: "58%" })}>
           <InputElement value="Enter request URL in the format https://samplurl.example.com" />
         </div>
       </div>
+      {/* Method */}
       <div css={gap}>
         <RadioElement
           heading="Method"
