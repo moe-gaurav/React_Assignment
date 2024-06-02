@@ -18,7 +18,6 @@ const HeadersChild = () => {
     });
 
     addParameterBox(updatedBoxes);
-    // setUpdatedBox(updatedBoxes);
   };
 
   const handleChangeSecondValue = (id, value) => {
@@ -30,10 +29,8 @@ const HeadersChild = () => {
     });
 
     addParameterBox(updatedBoxes);
-    // setUpdatedBox(updatedBoxes);
   };
   const handleClickKVPair = (id) => {
-    // addParameterBox(updatedBox);
     if (limit >= 5) {
       return;
     }
