@@ -54,7 +54,7 @@ const HeadersChild = () => {
             <>
               {ele.firstValue === "" && ele.secondValue === "" ? (
                 <ParameterElement
-                  key={uuidv4()}
+                  key={ele.id}
                   value="Enter value"
                   id={ele.id}
                   delete={deleteKeyValuePair}
@@ -63,7 +63,7 @@ const HeadersChild = () => {
                 />
               ) : ele.secondValue === "" ? (
                 <ParameterElement
-                  key={uuidv4()}
+                  key={ele.id}
                   fixedValue={ele.firstValue}
                   id={ele.id}
                   delete={deleteKeyValuePair}
@@ -72,7 +72,7 @@ const HeadersChild = () => {
                 />
               ) : ele.firstValue === "" ? (
                 <ParameterElement
-                  key={uuidv4()}
+                  key={ele.id}
                   fixedValue2={ele.secondValue}
                   id={ele.id}
                   delete={deleteKeyValuePair}
@@ -81,7 +81,7 @@ const HeadersChild = () => {
                 />
               ) : (
                 <ParameterElement
-                  key={uuidv4()}
+                  key={ele.id}
                   fixedValue={ele.firstValue}
                   fixedValue2={ele.secondValue}
                   id={ele.id}
