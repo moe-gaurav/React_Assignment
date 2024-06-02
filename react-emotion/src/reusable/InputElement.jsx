@@ -17,6 +17,7 @@ const InputElement = (props) => {
     <>
       {props.value || props.placeholder ? (
         <input
+          // autoFocus
           placeholder={props.value || props.placeholder}
           type="text"
           css={css({
@@ -32,6 +33,7 @@ const InputElement = (props) => {
           type="text"
           value={props.fixedValue}
           // value="fff"
+          // autoFocus
           placeholder={props.value || props.placeholder}
           css={css({
             height: "2rem",

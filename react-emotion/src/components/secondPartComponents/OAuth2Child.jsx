@@ -1,65 +1,13 @@
 import React, { useRef, useState } from "react";
 /** @jsxImportSource @emotion/react */
-import { v4 as uuidv4 } from "uuid";
 import { css } from "@emotion/react";
 import InputElement from "../../reusable/InputElement";
 import RadioElement from "../../reusable/RadioElement";
 import ParameterElement from "../../reusable/ParameterElement";
+import KVPair from "../../reusable/KVPair";
 
-const OAuth2Child = ({ firstHeading }) => {
+const OAuth2Child = (props) => {
   const requestBodyRef = useRef(null);
-  const [parameterBoxes, addParameterBox] = useState([]);
-  const [updatedBox, setUpdatedBox] = useState([]);
-  const [limit, setLimit] = useState(0);
-  //   const []
-
-  const handleChangeFirstValue = (id, value) => {
-    const updatedBoxes = parameterBoxes.map((box) => {
-      if (box.id === id) {
-        return { ...box, firstValue: value };
-      }
-      return box;
-    });
-
-    addParameterBox(updatedBoxes);
-    // setUpdatedBox(updatedBoxes);
-  };
-
-  const handleChangeSecondValue = (id, value) => {
-    const updatedBoxes = parameterBoxes.map((box) => {
-      if (box.id === id) {
-        return { ...box, secondValue: value };
-      }
-      return box;
-    });
-
-    addParameterBox(updatedBoxes);
-    // setUpdatedBox(updatedBoxes);
-  };
-  const handleClickKVPair = (id) => {
-    // addParameterBox(updatedBox);
-    if (limit >= 5) {
-      return;
-    }
-    setLimit(limit + 1);
-    addParameterBox((prev) => [
-      ...prev,
-      { id, firstValue: "", secondValue: "" },
-    ]);
-
-    // updatedBox.map((ele)=>{
-
-    // })
-    // const newUpdated = updatedBox;
-    // newUpdated.push({ id, firstValue: "", secondValue: "" });
-    // addParameterBox(newUpdated);
-    // console.log("this", parameterBoxes);
-  };
-  const deleteKeyValuePair = (uid) => {
-    const newParameterBox = parameterBoxes.filter((ele) => ele.id != uid);
-    addParameterBox(newParameterBox);
-    setLimit(limit - 1);
-  };
   const gap = css({
     marginTop: "2rem",
   });
@@ -73,7 +21,7 @@ const OAuth2Child = ({ firstHeading }) => {
     <div>
       {/* first *** */}
       <div css={gap}>
-        <div>{firstHeading}</div>
+        <div>{props.firstHeading}</div>
         <div css={css({ width: "90%" })}>
           <InputElement
             value={"Enter Request URL in format https://samplurl.example.com/"}
@@ -96,7 +44,7 @@ const OAuth2Child = ({ firstHeading }) => {
         <div>URL Parameters</div>
         <div css={css({ marginTop: "1rem" })}>
           <ParameterElement
-            fixedValue={"client_id"}
+            fixedValue={props.flag ? "refresh_token" : "client_id"}
             value="true"
             placeholder="Type @ to personalize"
             color="#A1B3D3"
@@ -104,112 +52,83 @@ const OAuth2Child = ({ firstHeading }) => {
         </div>
         <div>
           <ParameterElement
-            fixedValue={"state"}
+            fixedValue={props.flag ? "grant_type" : "state"}
             value="true"
             placeholder="Type @ to personalize"
             color="#A1B3D3"
           />
         </div>
-        <div>
-          <ParameterElement
-            fixedValue={"redirect_uri"}
-            value="true"
-            placeholder="Type @ to personalize"
-            color="#A1B3D3"
-          />
-        </div>
-        <div>
-          <ParameterElement
-            fixedValue={"response_type"}
-            value="true"
-            placeholder="Type @ to personalize"
-            color="#A1B3D3"
-          />
-        </div>
-        <div>
-          <ParameterElement
-            fixedValue={"scope"}
-            value="true"
-            placeholder="Type @ to personalize"
-            color="#A1B3D3"
-          />
-        </div>
-        <div>
-          {parameterBoxes.map((ele) => {
-            return (
-              <>
-                {ele.firstValue === "" && ele.secondValue === "" ? (
-                  <ParameterElement
-                    key={uuidv4()}
-                    value="Enter value"
-                    id={ele.id}
-                    delete={deleteKeyValuePair}
-                    changeFirstValue={handleChangeFirstValue}
-                    changeSecondValue={handleChangeSecondValue}
-                  />
-                ) : ele.secondValue === "" ? (
-                  <ParameterElement
-                    key={uuidv4()}
-                    fixedValue={ele.firstValue}
-                    id={ele.id}
-                    delete={deleteKeyValuePair}
-                    changeFirstValue={handleChangeFirstValue}
-                    changeSecondValue={handleChangeSecondValue}
-                  />
-                ) : ele.firstValue === "" ? (
-                  <ParameterElement
-                    key={uuidv4()}
-                    fixedValue2={ele.secondValue}
-                    id={ele.id}
-                    delete={deleteKeyValuePair}
-                    changeFirstValue={handleChangeFirstValue}
-                    changeSecondValue={handleChangeSecondValue}
-                  />
-                ) : (
-                  <ParameterElement
-                    key={uuidv4()}
-                    fixedValue={ele.firstValue}
-                    fixedValue2={ele.secondValue}
-                    id={ele.id}
-                    delete={deleteKeyValuePair}
-                    changeFirstValue={handleChangeFirstValue}
-                    changeSecondValue={handleChangeSecondValue}
-                  />
-                )}
-              </>
-            );
-          })}
-        </div>
-        <div
-          css={css({
-            display: "flex",
-            marginTop: "1rem",
-            color: limit >= 5 ? "rgb(161, 179, 211)" : "#06A6B7",
-            cursor: limit >= 5 ? "not-allowed" : "pointer",
-            width: "14%",
-          })}
-          onClick={() => {
-            handleClickKVPair(uuidv4());
-          }}
-        >
-          <div>
-            <span class="material-symbols-outlined">add</span>
-          </div>
-          <div css={css({ paddingTop: "3px" })}>KV Pair</div>
-        </div>
+        {props.flag ? (
+          <></>
+        ) : (
+          <>
+            <div>
+              <ParameterElement
+                fixedValue={"redirect_uri"}
+                value="true"
+                placeholder="Type @ to personalize"
+                color="#A1B3D3"
+              />
+            </div>
+            <div>
+              <ParameterElement
+                fixedValue={"response_type"}
+                value="true"
+                placeholder="Type @ to personalize"
+                color="#A1B3D3"
+              />
+            </div>
+            <div>
+              <ParameterElement
+                fixedValue={"scope"}
+                value="true"
+                placeholder="Type @ to personalize"
+                color="#A1B3D3"
+              />
+            </div>
+          </>
+        )}
+        <KVPair />
       </div>
       {/* fourth */}
       <div css={gap}>
         <div> Headers</div>
-        <div css={css({ width: "50%" })}>
-          <InputElement value={"Enter Key"} />
+        <div
+          css={css({
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          })}
+        >
+          <div css={css({ width: "50%" })}>
+            <InputElement value={"Enter Key"} />
+          </div>
+          <div css={css({ width: "33%" })}>
+            <InputElement value={"Enter value"} />
+          </div>
+          <div>
+            <span
+              style={{
+                fontSize: "30px",
+                paddingTop: "9px",
+                cursor: "pointer",
+                color: "#A1B3D3",
+              }}
+              class="material-symbols-outlined"
+            >
+              delete
+            </span>
+          </div>
+        </div>
+        <div>
+          <KVPair />
         </div>
       </div>
 
       {/* fifth */}
       <div css={gap}>
         <RadioElement
-          heading="API Request body type"
+          heading="API Request body type*"
           first="form"
           second="JSON"
           third="Raw"

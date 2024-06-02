@@ -117,7 +117,7 @@ const OAuth2 = () => {
             Automatically refresh token on an unauthorized error
           </label>
         </div>
-        <OAuth2Child firstHeading="Refresh token endpoint URL*" />
+        <OAuth2Child firstHeading="Refresh token endpoint URL*" flag="true" />
       </div>
     </div>
   );
