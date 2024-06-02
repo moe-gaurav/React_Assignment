@@ -20,7 +20,7 @@ const ParameterElement = (props) => {
       })}
     >
       <div css={css({ width: "50%" })}>
-        {props.value && !props.fixedValue ? (
+        {props.fixedValue === "" ? (
           <InputElement
             handleChangeFirst={handleChangeFirst}
             flag={1}
@@ -37,7 +37,7 @@ const ParameterElement = (props) => {
         )}
       </div>
       <div css={css({ width: "33%" })}>
-        {props.value && !props.fixedValue2 ? (
+        {props.fixedValue2 === "" ? (
           <InputElement
             handleChangeSecond={handleChangeSecond}
             flag={2}

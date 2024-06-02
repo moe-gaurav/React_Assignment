@@ -47,6 +47,7 @@ const OAuth2Child = (props) => {
             fixedValue={props.flag ? "refresh_token" : "client_id"}
             value="true"
             placeholder="Type @ to personalize"
+            fixedValue2=""
             color="#A1B3D3"
           />
         </div>
@@ -56,6 +57,7 @@ const OAuth2Child = (props) => {
             value="true"
             placeholder="Type @ to personalize"
             color="#A1B3D3"
+            fixedValue2=""
           />
         </div>
         {props.flag ? (
@@ -68,6 +70,7 @@ const OAuth2Child = (props) => {
                 value="true"
                 placeholder="Type @ to personalize"
                 color="#A1B3D3"
+                fixedValue2=""
               />
             </div>
             <div>
@@ -76,6 +79,7 @@ const OAuth2Child = (props) => {
                 value="true"
                 placeholder="Type @ to personalize"
                 color="#A1B3D3"
+                fixedValue2=""
               />
             </div>
             <div>
@@ -84,6 +88,7 @@ const OAuth2Child = (props) => {
                 value="true"
                 placeholder="Type @ to personalize"
                 color="#A1B3D3"
+                fixedValue2=""
               />
             </div>
           </>

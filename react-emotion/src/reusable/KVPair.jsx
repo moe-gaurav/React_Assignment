@@ -56,6 +56,8 @@ const HeadersChild = () => {
                 <ParameterElement
                   key={ele.id}
                   value="Enter value"
+                  fixedValue=""
+                  fixedValue2=""
                   id={ele.id}
                   delete={deleteKeyValuePair}
                   changeFirstValue={handleChangeFirstValue}
@@ -65,6 +67,7 @@ const HeadersChild = () => {
                 <ParameterElement
                   key={ele.id}
                   fixedValue={ele.firstValue}
+                  fixedValue2=""
                   id={ele.id}
                   delete={deleteKeyValuePair}
                   changeFirstValue={handleChangeFirstValue}
@@ -74,6 +77,7 @@ const HeadersChild = () => {
                 <ParameterElement
                   key={ele.id}
                   fixedValue2={ele.secondValue}
+                  fixedValue=""
                   id={ele.id}
                   delete={deleteKeyValuePair}
                   changeFirstValue={handleChangeFirstValue}
