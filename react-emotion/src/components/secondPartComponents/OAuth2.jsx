@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import OAuth2Child from "./OAuth2Child";
@@ -74,6 +74,7 @@ const OAuth2 = () => {
         gap: "2rem",
       })}
     >
+      {/* First inner box */}
       <div css={innerBoxStyle} ref={firstRef}>
         <div css={headingStyle}>
           <span
@@ -87,6 +88,7 @@ const OAuth2 = () => {
         </div>
         <OAuth2Child firstHeading="Authorization endpoint URL*" />
       </div>
+      {/* Second inner box */}
       <div css={innerBoxStyle} ref={secondRef}>
         <div css={headingStyle}>
           <span
@@ -100,6 +102,7 @@ const OAuth2 = () => {
         </div>
         <OAuth2Child firstHeading="Access token endpoint URL*" />
       </div>
+      {/* Third inner box */}
       <div css={innerBoxStyle} ref={thirdRef}>
         <div css={headingStyle}>
           <span

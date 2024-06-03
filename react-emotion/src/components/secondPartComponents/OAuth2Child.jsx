@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import InputElement from "../../reusable/InputElement";
