@@ -11,23 +11,24 @@ const BasicAuth = () => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        width: "64%",
+        width: "68%",
+        gap: "12px",
       })}
     >
-      <div>
+      <div css={css({ width: "42%", minWidth: "20rem" })}>
         <div
           css={css({
-            width: "24rem",
+            width: "100%",
           })}
         >
           User Name*
         </div>
         <InputElement value={"Enter user name"} />
       </div>
-      <div>
+      <div css={css({ width: "42%", minWidth: "20rem" })}>
         <div
           css={css({
-            width: "24rem",
+            width: "100%",
           })}
         >
           Password*

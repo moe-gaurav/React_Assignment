@@ -17,6 +17,7 @@ const ParameterElement = (props) => {
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
+        gap: "4px",
       })}
     >
       <div css={css({ width: "50%" })}>
@@ -60,10 +61,11 @@ const ParameterElement = (props) => {
       >
         <span
           style={{
-            fontSize: "30px",
-            paddingTop: "9px",
+            fontSize: "32px",
+            paddingTop: "8px",
             cursor: props.color ? "not-allowed" : "pointer",
             color: props.color ? `${props.color}` : "black",
+            fontWeight: 300,
           }}
           class="material-symbols-outlined"
         >

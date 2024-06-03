@@ -16,7 +16,7 @@ const FirstPartSelection = ({ handleSelectionChange }) => {
   };
 
   return (
-    <Box sx={{ width: 350, minWidth: 120 }}>
+    <Box sx={{ width: "27%", minWidth: 120 }}>
       <div
         css={css({
           fontSize: "larger",

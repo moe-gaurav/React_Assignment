@@ -103,6 +103,7 @@ const OAuth2Child = (props) => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
+            gap: "4px",
           })}
         >
           <div css={css({ width: "50%" })}>

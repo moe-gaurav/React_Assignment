@@ -8,7 +8,7 @@ const ApiAuth = () => {
       <div id="api_key_container_title">API Key*</div>
       <div
         css={css({
-          width: "24rem",
+          width: "32%",
         })}
         id="api_key_container_inputElement"
       >
