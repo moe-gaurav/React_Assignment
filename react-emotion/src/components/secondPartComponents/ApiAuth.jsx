@@ -1,19 +1,18 @@
 import React from "react";
 import InputElement from "../../reusable/InputElement";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+
 const ApiAuth = () => {
+  const InputContainer = styled.div`
+    width: 32%;
+  `;
   return (
-    <div id="api_key_container">
-      <div id="api_key_container_title">API Key*</div>
-      <div
-        css={css({
-          width: "32%",
-        })}
-        id="api_key_container_inputElement"
-      >
+    <div>
+      <div>API Key*</div>
+      <InputContainer>
         <InputElement value={"Enter API Key"} />
-      </div>
+      </InputContainer>
     </div>
   );
 };

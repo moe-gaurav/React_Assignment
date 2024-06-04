@@ -21,7 +21,9 @@ export default function RadioElement(props) {
           control={<Radio />}
           label={props.first}
           onClick={() => {
-            props.removeAPIBody(true);
+            if (typeof props.removeAPIBody === "function") {
+              props.removeAPIBody(true);
+            }
           }}
         />
         <FormControlLabel
@@ -29,7 +31,9 @@ export default function RadioElement(props) {
           control={<Radio />}
           label={props.second}
           onClick={() => {
-            props.removeAPIBody(false);
+            if (typeof props.removeAPIBody === "function") {
+              props.removeAPIBody(false);
+            }
           }}
         />
         <FormControlLabel
@@ -37,7 +41,9 @@ export default function RadioElement(props) {
           control={<Radio />}
           label={props.third}
           onClick={() => {
-            props.removeAPIBody(false);
+            if (typeof props.removeAPIBody === "function") {
+              props.removeAPIBody(false);
+            }
           }}
         />
         <FormControlLabel
@@ -45,7 +51,9 @@ export default function RadioElement(props) {
           control={<Radio />}
           label={props.fourth}
           onClick={() => {
-            props.removeAPIBody(false);
+            if (typeof props.removeAPIBody === "function") {
+              props.removeAPIBody(false);
+            }
           }}
         />
       </RadioGroup>

@@ -1,58 +1,85 @@
 import React, { useRef } from "react";
 import InputElement from "../../reusable/InputElement";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import RadioElement from "../../reusable/RadioElement";
 import KVPair from "../../reusable/KVPair";
 
 const SessionAuth = () => {
   const requestBodyRef = useRef(null);
-  const gap = css({
-    marginTop: "2rem",
-  });
-  const innerBoxStyle = css({
-    height: "auto",
-    overflow: "scroll",
-  });
   const removeAPIRequestBody = (value) => {
     console.log(value);
     if (requestBodyRef.current) {
       requestBodyRef.current.style.display = value ? "none" : "block";
     }
   };
+  const SessionAuthContainer = styled.div`
+    .child-first-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 79%;
+      gap: 5rem;
+    }
+    .child-container-gap {
+      margin-top: 2rem;
+    }
+    .child-container-parameter {
+      margin-top: 2rem;
+      width: 60%;
+    }
+    .child-first-container-part {
+      width: 34%;
+    }
+    .child-second-container-inputElement-container {
+      width: 58%;
+    }
+    .child-seventh-container-inputElement-container {
+      width: 30%;
+    }
+    .parameter-element-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .delete-icon {
+      font-size: 30px;
+      padding-top: 9px;
+      cursor: pointer;
+      color: #a1b3d3;
+    }
+    .key-inputElement-container {
+      width: 50%;
+    }
+    .value-inputElement-container {
+      width: 33%;
+    }
+  `;
   return (
-    <div css={innerBoxStyle}>
-      {/* username and password */}
-      <div
-        css={css({
-          display: "flex",
-          flexWrap: "wrap",
-          width: "79%",
-          gap: "5rem",
-        })}
-      >
-        <div css={css({ width: "34%" })}>
+    <SessionAuthContainer>
+      {/*First container - username and password */}
+      <div className="child-first-container">
+        <div className="child-first-container-part">
           <div>Username*</div>
-          <div css={css({ width: "100%" })}>
+          <div>
             <InputElement value="Enter user name" />
           </div>
         </div>
-        <div css={css({ width: "34%" })}>
+        <div className="child-first-container-part">
           <div>Password*</div>
-          <div css={css({ width: "100%" })}>
+          <div>
             <InputElement value="Enter password" />
           </div>
         </div>
       </div>
-      {/* Token Exchange */}
-      <div css={gap}>
+      {/*Second container -  Token Exchange */}
+      <div className="child-container-gap">
         <div>Token exchange endpoint URL*</div>
-        <div css={css({ width: "58%" })}>
+        <div className="child-second-container-inputElement-container">
           <InputElement value="Enter request URL in the format https://samplurl.example.com" />
         </div>
       </div>
-      {/* Method */}
-      <div css={gap}>
+      {/*Third container  - Method */}
+      <div className="child-container-gap">
         <RadioElement
           heading="Method"
           first="GET"
@@ -62,32 +89,18 @@ const SessionAuth = () => {
           removeAPIBody={removeAPIRequestBody}
         />
       </div>
-      {/* URL Parameter */}
-      <div css={[gap, css({ width: "60%" })]}>
+      {/*Fourth container -  URL Parameter */}
+      <div className="child-container-parameter">
         <div> URL Parameters</div>
-        <div
-          css={css({
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          })}
-        >
-          <div css={css({ width: "50%" })}>
+        <div className="parameter-element-container">
+          <div className="key-inputElement-container">
             <InputElement value={"Enter Key"} />
           </div>
-          <div css={css({ width: "33%" })}>
+          <div className="value-inputElement-container">
             <InputElement value={"Enter value"} />
           </div>
           <div>
-            <span
-              style={{
-                fontSize: "30px",
-                paddingTop: "9px",
-                cursor: "pointer",
-                color: "#A1B3D3",
-              }}
-              class="material-symbols-outlined"
-            >
+            <span className="delete-icon material-symbols-outlined">
               delete
             </span>
           </div>
@@ -96,32 +109,18 @@ const SessionAuth = () => {
           <KVPair />
         </div>
       </div>
-      {/* Headers */}
-      <div css={[gap, css({ width: "60%" })]}>
+      {/*Fifth container -  Headers */}
+      <div className="child-container-parameter">
         <div> Headers</div>
-        <div
-          css={css({
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-          })}
-        >
-          <div css={css({ width: "50%" })}>
+        <div className="parameter-element-container">
+          <div className="key-inputElement-container">
             <InputElement value={"Enter Key"} />
           </div>
-          <div css={css({ width: "33%" })}>
+          <div className="value-inputElement-container">
             <InputElement value={"Enter value"} />
           </div>
           <div>
-            <span
-              style={{
-                fontSize: "30px",
-                paddingTop: "9px",
-                cursor: "pointer",
-                color: "#A1B3D3",
-              }}
-              class="material-symbols-outlined"
-            >
+            <span className="delete-icon material-symbols-outlined">
               delete
             </span>
           </div>
@@ -130,8 +129,8 @@ const SessionAuth = () => {
           <KVPair />
         </div>
       </div>
-      {/* API request body type */}
-      <div css={gap}>
+      {/* Sixth container API request body type */}
+      <div className="child-container-gap">
         <RadioElement
           heading="API Request body type*"
           first="form"
@@ -140,14 +139,14 @@ const SessionAuth = () => {
           fourth="Empty"
         />
       </div>
-      {/* Request body */}
-      <div css={gap} ref={requestBodyRef}>
+      {/* Seventh container Request body */}
+      <div className="child-container-gap" ref={requestBodyRef}>
         <div> API Request body</div>
-        <div css={css({ width: "30%" })}>
+        <div className="child-seventh-container-inputElement-container">
           <InputElement value={"Enter Key"} />
         </div>
       </div>
-    </div>
+    </SessionAuthContainer>
   );
 };
 

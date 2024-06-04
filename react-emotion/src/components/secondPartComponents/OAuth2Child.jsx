@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+
+import styled from "@emotion/styled";
 import InputElement from "../../reusable/InputElement";
 import RadioElement from "../../reusable/RadioElement";
 import ParameterElement from "../../reusable/ParameterElement";
@@ -8,28 +9,56 @@ import KVPair from "../../reusable/KVPair";
 
 const OAuth2Child = (props) => {
   const requestBodyRef = useRef(null);
-  const gap = css({
-    marginTop: "2rem",
-  });
+
   const removeAPIRequestBody = (value) => {
-    console.log(value);
     if (requestBodyRef.current) {
       requestBodyRef.current.style.display = value ? "none" : "block";
     }
   };
+
+  const OAuthChildContainer = styled.div`
+    .gap {
+      margin-top: 2rem;
+    }
+  `;
+  const FourthComponentInner = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px;
+
+    .delete-icon {
+      font-size: 30px;
+      padding-top: 9px;
+      cursor: pointer;
+      color: #a1b3d3;
+    }
+    .key-inputElement-container {
+      width: 50%;
+    }
+    .value-inputElement-container {
+      width: 33%;
+    }
+  `;
+  const InputElementContainerFirst = styled.div`
+    width: 90%;
+  `;
+  const InputElementContainerSecond = styled.div`
+    width: 30%;
+  `;
   return (
-    <div>
+    <OAuthChildContainer>
       {/* first *** */}
-      <div css={gap}>
+      <div className="gap">
         <div>{props.firstHeading}</div>
-        <div css={css({ width: "90%" })}>
+        <InputElementContainerFirst>
           <InputElement
             value={"Enter Request URL in format https://samplurl.example.com/"}
           />
-        </div>
+        </InputElementContainerFirst>
       </div>
       {/* second */}
-      <div css={gap}>
+      <div className="gap">
         <RadioElement
           heading="Method"
           first="GET"
@@ -40,9 +69,9 @@ const OAuth2Child = (props) => {
         />
       </div>
       {/* third */}
-      <div css={gap}>
+      <div className="gap">
         <div>URL Parameters</div>
-        <div css={css({ marginTop: "1rem" })}>
+        <div>
           <ParameterElement
             fixedValue={props.flag ? "refresh_token" : "client_id"}
             value="true"
@@ -96,43 +125,28 @@ const OAuth2Child = (props) => {
         <KVPair />
       </div>
       {/* fourth */}
-      <div css={gap}>
+      <div className="gap">
         <div> Headers</div>
-        <div
-          css={css({
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            gap: "4px",
-          })}
-        >
-          <div css={css({ width: "50%" })}>
+        <FourthComponentInner>
+          <div className="key-inputElement-container">
             <InputElement value={"Enter Key"} />
           </div>
-          <div css={css({ width: "33%" })}>
+          <div className="value-inputElement-container">
             <InputElement value={"Enter value"} />
           </div>
           <div>
-            <span
-              style={{
-                fontSize: "30px",
-                paddingTop: "9px",
-                cursor: "pointer",
-                color: "#A1B3D3",
-              }}
-              class="material-symbols-outlined"
-            >
+            <span className="delete-icon material-symbols-outlined">
               delete
             </span>
           </div>
-        </div>
+        </FourthComponentInner>
         <div>
           <KVPair />
         </div>
       </div>
 
       {/* fifth */}
-      <div css={gap}>
+      <div className="gap">
         <RadioElement
           heading="API Request body type*"
           first="form"
@@ -142,13 +156,13 @@ const OAuth2Child = (props) => {
         />
       </div>
       {/* sixth */}
-      <div css={gap} ref={requestBodyRef}>
+      <div className="gap" ref={requestBodyRef}>
         <div> API Request body</div>
-        <div css={css({ width: "30%" })}>
+        <InputElementContainerSecond>
           <InputElement value={"Enter Key"} />
-        </div>
+        </InputElementContainerSecond>
       </div>
-    </div>
+    </OAuthChildContainer>
   );
 };
 

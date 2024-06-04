@@ -1,6 +1,6 @@
 import React from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 const InputElement = (props) => {
   const handleChange = (e) => {
     if (props.flag) {
@@ -13,31 +13,26 @@ const InputElement = (props) => {
       return;
     }
   };
+
+  const InputElement = styled.input`
+    height: 2rem;
+    width: 100%;
+    margin-top: 6px;
+    font-size: medium;
+  `;
   return (
     <>
       {props.value || props.placeholder ? (
-        <input
+        <InputElement
           placeholder={props.value || props.placeholder}
           type="text"
-          css={css({
-            height: "2rem",
-            width: "100%",
-            marginTop: "6px",
-            fontSize: "medium",
-          })}
           onChange={handleChange}
         />
       ) : (
-        <input
+        <InputElement
           type="text"
           value={props.fixedValue}
           placeholder={props.value || props.placeholder}
-          css={css({
-            height: "2rem",
-            width: "100%",
-            marginTop: "6px",
-            fontSize: "medium",
-          })}
           onChange={handleChange}
         />
       )}

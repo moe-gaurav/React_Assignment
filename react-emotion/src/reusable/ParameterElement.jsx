@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+
+import styled from "@emotion/styled";
 import InputElement from "./InputElement";
 
 const ParameterElement = (props) => {
@@ -11,16 +12,30 @@ const ParameterElement = (props) => {
   const handleChangeSecond = (id, val) => {
     props.changeSecondValue(id, val);
   };
+
+  const ParameterElementContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px;
+    .delete-icon {
+      font-size: 32px;
+      padding-top: 8px;
+      cursor: ${props.color ? "not-allowed" : "pointer"};
+      color: ${props.color ? `${props.color}` : "black"};
+      font-weight: 300;
+    }
+    .first-inputElement {
+      width: 50%;
+    }
+    .second-inputElement {
+      width: 33%;
+    }
+  `;
+
   return (
-    <div
-      css={css({
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        gap: "4px",
-      })}
-    >
-      <div css={css({ width: "50%" })}>
+    <ParameterElementContainer color={props.color}>
+      <div className="first-inputElement">
         {props.fixedValue === "" ? (
           <InputElement
             handleChangeFirst={handleChangeFirst}
@@ -37,7 +52,7 @@ const ParameterElement = (props) => {
           />
         )}
       </div>
-      <div css={css({ width: "33%" })}>
+      <div className="second-inputElement">
         {props.fixedValue2 === "" ? (
           <InputElement
             handleChangeSecond={handleChangeSecond}
@@ -59,20 +74,9 @@ const ParameterElement = (props) => {
           props.delete(props.id);
         }}
       >
-        <span
-          style={{
-            fontSize: "32px",
-            paddingTop: "8px",
-            cursor: props.color ? "not-allowed" : "pointer",
-            color: props.color ? `${props.color}` : "black",
-            fontWeight: 300,
-          }}
-          class="material-symbols-outlined"
-        >
-          delete
-        </span>
+        <span className=" delete-icon material-symbols-outlined">delete</span>
       </div>
-    </div>
+    </ParameterElementContainer>
   );
 };
 

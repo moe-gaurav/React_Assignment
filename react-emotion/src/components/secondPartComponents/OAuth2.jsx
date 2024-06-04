@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import OAuth2Child from "./OAuth2Child";
 
 const OAuth2 = () => {
@@ -51,32 +51,37 @@ const OAuth2 = () => {
     }
   }, []);
 
-  const innerBoxStyle = css({
-    border: "1px solid lightgrey",
-    padding: "17px",
-    borderRadius: "10px",
-    width: "56%",
-    transition: "height 1s",
-    height: "1.5rem",
-    overflow: "scroll",
-  });
-  const headingStyle = css({
-    display: "flex",
-    gap: "6px",
-    cursor: "pointer",
-  });
+  const OuterBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    .innerBox-style {
+      border: 1px solid lightgrey;
+      padding: 17px;
+      border-radius: 10px;
+      width: 56%;
+      transition: height 1s;
+      height: 1.5rem;
+      overflow: scroll;
+    }
+    .heading-style {
+      display: flex;
+      cursor: pointer;
+      gap: 6px;
+    }
+    .heading-style-title {
+      padding: 2px;
+    }
+    .innerBox-style-checkBox {
+      margin-top: 2rem;
+    }
+  `;
 
   return (
-    <div
-      css={css({
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "2rem",
-      })}
-    >
+    <OuterBox>
       {/* First inner box */}
-      <div css={innerBoxStyle} ref={firstRef}>
-        <div css={headingStyle}>
+      <div className="innerBox-style" ref={firstRef}>
+        <div className="heading-style">
           <span
             style={{ transition: "transform 0.5s" }}
             class="material-symbols-outlined"
@@ -84,13 +89,13 @@ const OAuth2 = () => {
           >
             chevron_right
           </span>
-          <div css={css({ padding: "2px" })}>Authentication URL</div>
+          <div className="heading-style-title">Authentication URL</div>
         </div>
         <OAuth2Child firstHeading="Authorization endpoint URL*" />
       </div>
       {/* Second inner box */}
-      <div css={innerBoxStyle} ref={secondRef}>
-        <div css={headingStyle}>
+      <div className="innerBox-style" ref={secondRef}>
+        <div className="heading-style">
           <span
             style={{ transition: "transform 0.5s" }}
             class="material-symbols-outlined"
@@ -98,13 +103,13 @@ const OAuth2 = () => {
           >
             chevron_right
           </span>
-          <div css={css({ padding: "2px" })}>Access Token URL</div>
+          <div className="heading-style-title">Access Token URL</div>
         </div>
         <OAuth2Child firstHeading="Access token endpoint URL*" />
       </div>
       {/* Third inner box */}
-      <div css={innerBoxStyle} ref={thirdRef}>
-        <div css={headingStyle}>
+      <div className="innerBox-style" ref={thirdRef}>
+        <div className="heading-style">
           <span
             style={{ transition: "transform 0.5s" }}
             class="material-symbols-outlined"
@@ -112,9 +117,9 @@ const OAuth2 = () => {
           >
             chevron_right
           </span>
-          <div css={css({ padding: "2px" })}>Refresh Token request URL</div>
+          <div className="heading-style-title">Refresh Token request URL</div>
         </div>
-        <div css={css({ marginTop: "2rem" })}>
+        <div className="innerBox-style-checkBox">
           <input type="checkbox" id="agree" />
           <label for="agree">
             Automatically refresh token on an unauthorized error
@@ -122,7 +127,7 @@ const OAuth2 = () => {
         </div>
         <OAuth2Child firstHeading="Refresh token endpoint URL*" flag="true" />
       </div>
-    </div>
+    </OuterBox>
   );
 };
 

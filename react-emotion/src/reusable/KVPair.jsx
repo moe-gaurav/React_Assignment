@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { v4 as uuidv4 } from "uuid";
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
 import ParameterElement from "./ParameterElement";
 
@@ -45,6 +45,18 @@ const HeadersChild = () => {
     addParameterBox(newParameterBox);
     setLimit(limit - 1);
   };
+
+  const AddKeyValuePairContainer = styled.div`
+    display: flex;
+    margin-top: 1rem;
+    color: ${(props) => (props.limit >= 5 ? "rgb(161, 179, 211)" : "#06A6B7")};
+    cursor: ${(props) => (props.limit >= 5 ? "not-allowed" : "pointer")};
+    width: 14%;
+
+    .kVPair-heading {
+      padding-top: 3px;
+    }
+  `;
 
   return (
     <div>
@@ -98,14 +110,8 @@ const HeadersChild = () => {
           );
         })}
       </div>
-      <div
-        css={css({
-          display: "flex",
-          marginTop: "1rem",
-          color: limit >= 5 ? "rgb(161, 179, 211)" : "#06A6B7",
-          cursor: limit >= 5 ? "not-allowed" : "pointer",
-          width: "14%",
-        })}
+      <AddKeyValuePairContainer
+        limit={limit}
         onClick={() => {
           handleClickKVPair(uuidv4());
         }}
@@ -113,8 +119,8 @@ const HeadersChild = () => {
         <div>
           <span class="material-symbols-outlined">add</span>
         </div>
-        <div css={css({ paddingTop: "3px" })}>KV Pair</div>
-      </div>
+        <div className="kVPair-heading">KV Pair</div>
+      </AddKeyValuePairContainer>
     </div>
   );
 };
